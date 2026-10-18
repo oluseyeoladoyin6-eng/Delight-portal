@@ -1,0 +1,663 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#102448">
+<title>God Of Seed Academy School Portal</title>
+
+<style>
+:root {
+  --navy:#102448;
+  --blue:#2058bd;
+  --light:#f2f5fc;
+  --gold:#ffca4b;
+  --green:#168653;
+  --red:#d84646;
+}
+* {box-sizing:border-box}
+body {
+  margin:0;font-family:Arial,sans-serif;
+  background:var(--light);color:#24334d;
+}
+button,input,select,textarea {font:inherit}
+button {cursor:pointer}
+header {
+  background:var(--navy);color:white;padding:13px 16px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:10px;position:sticky;top:0;z-index:5;
+}
+.brand {display:flex;align-items:center;gap:10px}
+.logo {
+  width:43px;height:43px;background:white;color:var(--blue);
+  display:grid;place-items:center;border-radius:12px;
+  font-size:28px;font-weight:bold;
+}
+.brand h2 {margin:0;font-size:20px}
+.brand small {font-size:11px;color:#d8e4ff}
+button {border:0;border-radius:8px;padding:11px 13px}
+.menu {background:var(--gold);font-weight:bold}
+.layout {display:flex;min-height:calc(100vh - 69px)}
+nav {
+  width:225px;flex-shrink:0;background:white;
+  padding:12px;border-right:1px solid #e0e6f1;
+}
+nav button {
+  display:block;width:100%;text-align:left;
+  background:transparent;margin:3px 0;color:#34435e;
+}
+nav button.active,nav button:hover {
+  background:#e6edff;color:var(--blue);font-weight:bold;
+}
+main {flex:1;min-width:0;padding:20px}
+.page {display:none}
+.page.active {display:block}
+.hero {
+  padding:24px;border-radius:16px;color:white;
+  background:linear-gradient(125deg,#163c85,#397be1);
+}
+.hero h1 {margin:0 0 9px;font-size:25px}
+.hero p {line-height:1.6;margin:0;color:#e8efff}
+.cards {
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;margin:18px 0;
+}
+.card,.panel {
+  background:white;border-radius:13px;padding:16px;
+  box-shadow:0 3px 12px #14294c0b;margin-bottom:14px;
+}
+.card .emoji {font-size:25px}
+.card p {color:#77839a;font-size:13px;margin:10px 0}
+.card h2 {margin:0;color:var(--blue);font-size:24px}
+.panel h3 {margin-top:0}
+.muted {color:#7a879b;font-size:13px;line-height:1.6}
+.btn {background:var(--blue);color:white;margin:3px 3px 3px 0}
+.btn.gold {background:var(--gold);color:#342900}
+.btn.light {background:#e9efff;color:var(--blue)}
+.btn.green {background:var(--green);color:white}
+.btn.red {background:var(--red);color:white}
+.field {margin:12px 0}
+label {display:block;font-size:13px;font-weight:bold;margin-bottom:6px}
+input,select,textarea {
+  width:100%;padding:12px;border:1px solid #d1d9e7;
+  border-radius:8px;background:white;color:#24334d;
+}
+textarea {min-height:85px;resize:vertical}
+.grid2 {display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tablewrap {overflow-x:auto}
+table {border-collapse:collapse;width:100%;font-size:13px}
+th,td {padding:11px 9px;border-bottom:1px solid #e8edf5;text-align:left}
+th {background:#f3f6fc}
+.notice {
+  background:#fff5d8;color:#755700;padding:12px;
+  border-radius:9px;font-size:13px;line-height:1.6;margin:12px 0;
+}
+.success {background:#e3f7eb;color:#17673a}
+.pill {font-size:11px;border-radius:20px;padding:5px 8px;background:#e7efff;color:#204e9f}
+.question {padding:14px 0;border-bottom:1px solid #e5eaf3}
+.question label {font-weight:normal;line-height:1.7}
+.login-wrap {
+  min-height:100vh;display:grid;place-items:center;padding:18px;
+  background:linear-gradient(135deg,#102448,#2868c8);
+}
+.login {
+  background:white;padding:25px;border-radius:18px;
+  width:100%;max-width:420px;
+}
+.login .logo {margin:auto;background:var(--blue);color:white}
+.login h1 {font-size:23px;text-align:center}
+.login .sub {text-align:center;color:#78849a;font-size:13px}
+footer {text-align:center;color:#8994a6;font-size:12px;padding:20px}
+#toast {
+  position:fixed;display:none;bottom:18px;left:50%;
+  transform:translateX(-50%);z-index:20;background:#102448;
+  color:white;border-radius:9px;padding:13px 17px;
+  max-width:90%;font-size:13px;
+}
+@media(max-width:850px) {
+  .layout {display:block}
+  nav {display:none;width:100%;border-right:0}
+  nav.open {display:block}
+  main {padding:12px}
+  .cards {grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .card {padding:13px}
+  .hero {padding:19px}
+  .hero h1 {font-size:22px}
+}
+@media(min-width:851px) {
+  nav {display:block!important}
+  .menu {display:none}
+}
+@media(max-width:420px) {
+  .grid2 {grid-template-columns:1fr}
+  .brand h2 {font-size:17px}
+  .brand small {font-size:10px}
+  header {padding:10px}
+  th,td {padding:9px 7px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<section id="loginScreen" class="login-wrap">
+  <div class="login">
+    <div class="logo">D</div>
+    <h1>DELIGHT SCHOOL PORTAL</h1>
+    <p class="sub">Excellence in learning and character</p>
+    <div class="notice">
+      Welcome to DELIGHT! Enter your details to explore the demonstration portal.
+    </div>
+
+    <div class="field">
+      <label>Your name</label>
+      <input id="loginName" placeholder="Enter your name">
+    </div>
+    <div class="field">
+      <label>Choose your role</label>
+      <select id="loginRole">
+        <option value="student">Student</option>
+        <option value="teacher">Teacher</option>
+        <option value="parent">Parent</option>
+        <option value="admin">Administrator</option>
+      </select>
+    </div>
+    <button class="btn" style="width:100%;padding:14px" onclick="login()">
+      Enter Portal
+    </button>
+    <p class="muted">
+      Demo login only. This page does not verify identities or provide secure accounts.
+    </p>
+  </div>
+</section>
+
+<!-- APPLICATION -->
+<div id="app" style="display:none">
+<header>
+  <div class="brand">
+    <div class="logo">D</div>
+    <div>
+      <h2>DELIGHT</h2>
+      <small>School Management Portal</small>
+    </div>
+  </div>
+  <button class="menu" onclick="toggleMenu()">☰ MENU</button>
+</header>
+
+<div class="layout">
+<nav id="nav">
+  <button class="active" data-page="dashboard" onclick="showPage('dashboard',this)">🏠 Dashboard</button>
+  <button data-page="exams" onclick="showPage('exams',this)">📝 Online Exams</button>
+  <button data-page="results" onclick="showPage('results',this)">📊 Results</button>
+  <button data-page="attendance" onclick="showPage('attendance',this)">📅 Attendance</button>
+  <button data-page="assignments" onclick="showPage('assignments',this)">📚 Assignments</button>
+  <button data-page="timetable" onclick="showPage('timetable',this)">🗓 Timetable</button>
+  <button data-page="fees" onclick="showPage('fees',this)">💳 School Fees</button>
+  <button data-page="people" onclick="showPage('people',this)">👥 School Records</button>
+  <button data-page="admin" onclick="showPage('admin',this)">⚙ Admin Panel</button>
+  <button onclick="logout()">↪ Log Out</button>
+</nav>
+
+<main>
+
+<!-- DASHBOARD -->
+<section class="page active" id="dashboard">
+  <div class="hero">
+    <h1>Welcome, <span id="welcomeName">Student</span> 👋</h1>
+    <p id="welcomeText">Your learning journey starts here.</p>
+    <p>Excellence in learning and character.</p>
+  </div>
+
+  <div class="cards">
+    <div class="card"><div class="emoji">📚</div><p>Subjects</p><h2>6</h2></div>
+    <div class="card"><div class="emoji">📝</div><p>Available Exams</p><h2 id="examCount">1</h2></div>
+    <div class="card"><div class="emoji">📅</div><p>Attendance</p><h2 id="attendanceCount">0</h2></div>
+    <div class="card"><div class="emoji">📊</div><p>My Results</p><h2 id="resultCount">0</h2></div>
+  </div>
+
+  <div class="panel">
+    <h3>Quick Actions</h3>
+    <button class="btn" onclick="showPage('exams')">Take an Exam</button>
+    <button class="btn light" onclick="showPage('results')">View Results</button>
+    <button class="btn light" onclick="showPage('timetable')">View Timetable</button>
+    <button class="btn light" onclick="showPage('assignments')">Assignments</button>
+  </div>
+
+  <div class="panel">
+    <h3>School Announcements</h3>
+    <div id="announcementView" class="notice">Welcome to the DELIGHT School Portal demo.</div>
+    <p class="muted">Official announcements will require a connected school database for everyone to see the same updates.</p>
+  </div>
+</section>
+
+<!-- EXAMS -->
+<section class="page" id="exams">
+  <div class="hero">
+    <h1>Online Examination</h1>
+    <p>Answer the questions and submit to see your demonstration score.</p>
+  </div>
+  <div class="notice">
+    Practice examination: Biology. This is a sample quiz, not an official school examination.
+  </div>
+  <div class="panel">
+    <h3>Biology Practice Test</h3>
+    <p class="muted">5 questions · 20 marks each · One attempt per page session is not enforced.</p>
+    <form id="examForm" onsubmit="submitExam(event)">
+      <div id="questionArea"></div>
+      <button class="btn" type="submit">Submit Examination</button>
+      <button class="btn light" type="button" onclick="resetExam()">Reset Answers</button>
+    </form>
+    <div id="examFeedback"></div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="page" id="results">
+  <div class="hero"><h1>Academic Results</h1><p>View results saved on this device.</p></div>
+  <div class="panel">
+    <h3>My Results</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Student</th><th>Subject</th><th>Score</th><th>Grade</th></tr></thead>
+        <tbody id="resultTable"></tbody>
+      </table>
+    </div>
+    <p class="muted">Scores are demonstration records stored locally in this browser.</p>
+  </div>
+</section>
+
+<!-- ATTENDANCE -->
+<section class="page" id="attendance">
+  <div class="hero"><h1>Attendance</h1><p>Record and view attendance in the demo.</p></div>
+  <div class="panel">
+    <h3>Mark Attendance</h3>
+    <div class="field"><label>Student name</label><input id="attStudent" placeholder="Student name"></div>
+    <div class="grid2">
+      <div class="field"><label>Date</label><input type="date" id="attDate"></div>
+      <div class="field"><label>Status</label>
+        <select id="attStatus"><option>Present</option><option>Absent</option><option>Late</option></select>
+      </div>
+    </div>
+    <button class="btn" onclick="markAttendance()">Save Attendance</button>
+  </div>
+  <div class="panel">
+    <h3>Attendance Records</h3>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Student</th><th>Date</th><th>Status</th></tr></thead>
+      <tbody id="attendanceTable"></tbody>
+    </table></div>
+  </div>
+</section>
+
+<!-- ASSIGNMENTS -->
+<section class="page" id="assignments">
+  <div class="hero"><h1>Assignments</h1><p>Check schoolwork and record demo submissions.</p></div>
+  <div class="panel">
+    <h3>Current Assignment</h3>
+    <p><b>Biology:</b> Explain five functions of the human skeleton.</p>
+    <p class="muted">Submit your answer below. This demo saves it on this device only.</p>
+    <textarea id="assignmentAnswer" placeholder="Type your answer here..."></textarea>
+    <button class="btn" onclick="saveAssignment()">Save Submission</button>
+    <p id="assignmentFeedback" class="muted"></p>
+  </div>
+  <div class="panel" id="teacherAssignmentPanel" style="display:none">
+    <h3>Teacher: Create Assignment</h3>
+    <input id="newAssignment" placeholder="Enter assignment title">
+    <textarea id="newAssignmentDesc" placeholder="Assignment instructions"></textarea>
+    <button class="btn" onclick="createAssignment()">Publish Demo Assignment</button>
+  </div>
+  <div class="panel"><h3>Assignment Board</h3><div id="assignmentList"></div></div>
+</section>
+
+<!-- TIMETABLE -->
+<section class="page" id="timetable">
+  <div class="hero"><h1>Class Timetable</h1><p>Example weekly school timetable.</p></div>
+  <div class="panel">
+    <div class="tablewrap"><table>
+      <thead><tr><th>Time</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th></tr></thead>
+      <tbody>
+        <tr><td>8:00</td><td>Assembly</td><td>Assembly</td><td>Assembly</td><td>Assembly</td><td>Assembly</td></tr>
+        <tr><td>9:00</td><td>English</td><td>Maths</td><td>Biology</td><td>English</td><td>Maths</td></tr>
+        <tr><td>10:00</td><td>Maths</td><td>Physics</td><td>English</td><td>Chemistry</td><td>Biology</td></tr>
+        <tr><td>11:00</td><td>Break</td><td>Break</td><td>Break</td><td>Break</td><td>Break</td></tr>
+        <tr><td>11:30</td><td>Biology</td><td>English</td><td>Maths</td><td>Physics</td><td>Chemistry</td></tr>
+        <tr><td>12:30</td><td>Chemistry</td><td>Biology</td><td>Physics</td><td>Maths</td><td>Sports</td></tr>
+      </tbody>
+    </table></div>
+    <p class="muted">Sample timetable. Replace it with your school's official schedule.</p>
+  </div>
+</section>
+
+<!-- FEES -->
+<section class="page" id="fees">
+  <div class="hero"><h1>School Fees</h1><p>View and record demonstration payment entries.</p></div>
+  <div class="panel">
+    <h3>Add a Fee Record</h3>
+    <div class="field"><label>Student name</label><input id="feeStudent" placeholder="Student name"></div>
+    <div class="grid2">
+      <div class="field"><label>Amount (₦)</label><input type="number" id="feeAmount" min="0" placeholder="50000"></div>
+      <div class="field"><label>Payment status</label><select id="feeStatus"><option>Pending</option><option>Paid</option><option>Part-paid</option></select></div>
+    </div>
+    <button class="btn" onclick="addFee()">Save Fee Record</button>
+    <p class="muted">This does not collect money or verify bank transfers.</p>
+  </div>
+  <div class="panel">
+    <h3>Fee Records</h3>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Student</th><th>Amount</th><th>Status</th></tr></thead>
+      <tbody id="feeTable"></tbody>
+    </table></div>
+  </div>
+</section>
+
+<!-- SCHOOL RECORDS -->
+<section class="page" id="people">
+  <div class="hero"><h1>School Records</h1><p>Demo student, teacher and parent directory.</p></div>
+  <div class="panel">
+    <h3>Add a Person</h3>
+    <div class="grid2">
+      <div class="field"><label>Full name</label><input id="personName" placeholder="Full name"></div>
+      <div class="field"><label>Role</label>
+        <select id="personRole"><option>Student</option><option>Teacher</option><option>Parent</option></select>
+      </div>
+    </div>
+    <div class="field"><label>Class or department</label><input id="personClass" placeholder="SS2 / Science Department"></div>
+    <button class="btn" onclick="addPerson()">Add Record</button>
+  </div>
+  <div class="panel">
+    <h3>Directory</h3>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Name</th><th>Role</th><th>Class/Department</th></tr></thead>
+      <tbody id="peopleTable"></tbody>
+    </table></div>
+  </div>
+</section>
+
+<!-- ADMIN -->
+<section class="page" id="admin">
+  <div class="hero"><h1>Administrator Dashboard</h1><p>Manage demonstration records and school announcements.</p></div>
+  <div class="notice">
+    DEMO MODE: choosing Administrator does not provide a secure admin login. Do not store real student or financial information here.
+  </div>
+  <div class="cards">
+    <div class="card"><div class="emoji">👥</div><p>People</p><h2 id="adminPeople">0</h2></div>
+    <div class="card"><div class="emoji">📅</div><p>Attendance Entries</p><h2 id="adminAttendance">0</h2></div>
+    <div class="card"><div class="emoji">💳</div><p>Fee Entries</p><h2 id="adminFees">0</h2></div>
+    <div class="card"><div class="emoji">📊</div><p>Results</p><h2 id="adminResults">0</h2></div>
+  </div>
+  <div class="panel">
+    <h3>Publish Announcement</h3>
+    <textarea id="announcementInput" placeholder="Write a school announcement..."></textarea>
+    <button class="btn" onclick="publishAnnouncement()">Publish Announcement</button>
+  </div>
+  <div class="panel">
+    <h3>Data Backup</h3>
+    <p class="muted">Export the demo records from this device to a JSON file.</p>
+    <button class="btn" onclick="exportData()">Export Demo Data</button>
+    <button class="btn red" onclick="clearData()">Clear All Demo Data</button>
+    <p class="muted">Export files may contain personal information if you entered any. Keep them private.</p>
+  </div>
+</section>
+
+<footer>DELIGHT School Portal · Excellence in learning and character</footer>
+</main>
+</div>
+</div>
+<div id="toast"></div>
+
+<script>
+const $ = id => document.getElementById(id);
+
+const defaults = {
+  results: [],
+  attendance: [],
+  fees: [],
+  people: [],
+  assignments: [],
+  announcement: "Welcome to the DELIGHT School Portal demo."
+};
+
+let data = loadData();
+let currentName = "";
+let currentRole = "student";
+
+function loadData() {
+  try {
+    const saved = localStorage.getItem("delightPortalDemo");
+    return saved ? {...defaults,...JSON.parse(saved)} : structuredDefaults();
+  } catch(e) {
+    return structuredDefaults();
+  }
+}
+function structuredDefaults() {
+  return JSON.parse(JSON.stringify(defaults));
+}
+function saveData() {
+  try {
+    localStorage.setItem("delightPortalDemo",JSON.stringify(data));
+  } catch(e) {
+    toast("Unable to save. Check your browser storage.");
+  }
+  renderAll();
+}
+function toast(message) {
+  $("toast").textContent = message;
+  $("toast").style.display = "block";
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(()=>$("toast").style.display="none",2800);
+}
+function login() {
+  currentName = $("loginName").value.trim();
+  currentRole = $("loginRole").value;
+  if (!currentName) {
+    toast("Please enter your name first.");
+    $("loginName").focus();
+    return;
+  }
+  $("loginScreen").style.display = "none";
+  $("app").style.display = "block";
+  $("welcomeName").textContent = currentName;
+  const greetings = {
+    student:"Access your subjects, assignments, exams and results.",
+    teacher:"Manage demonstration assignments and review school records.",
+    parent:"View the demonstration school records and fee information.",
+    admin:"Manage the demonstration school portal."
+  };
+  $("welcomeText").textContent = greetings[currentRole];
+  $("teacherAssignmentPanel").style.display =
+    currentRole==="teacher" || currentRole==="admin" ? "block" : "none";
+  if(currentRole!=="admin" && currentRole!=="teacher") {
+    // The sections remain visible in this demo; this is not access control.
+  }
+  renderAll();
+  showPage("dashboard");
+}
+function logout() {
+  $("app").style.display = "none";
+  $("loginScreen").style.display = "grid";
+  $("loginName").value = "";
+}
+function toggleMenu() {
+  $("nav").classList.toggle("open");
+}
+function showPage(id,button) {
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  const page = $(id);
+  if(!page) return;
+  page.classList.add("active");
+  document.querySelectorAll("nav button[data-page]").forEach(b=>b.classList.remove("active"));
+  const selected = button || document.querySelector('nav button[data-page="'+id+'"]');
+  if(selected) selected.classList.add("active");
+  $("nav").classList.remove("open");
+  renderAll();
+}
+const questions = [
+  {q:"Which organelle is responsible for photosynthesis?",a:["Nucleus","Chloroplast","Ribosome","Mitochondrion"],correct:1},
+  {q:"What is the basic unit of life?",a:["Tissue","Organ","Cell","System"],correct:2},
+  {q:"Which gas do plants absorb during photosynthesis?",a:["Oxygen","Nitrogen","Carbon dioxide","Hydrogen"],correct:2},
+  {q:"Which organ pumps blood around the human body?",a:["Liver","Heart","Lung","Kidney"],correct:1},
+  {q:"Which part of a plant absorbs water from the soil?",a:["Flower","Leaf","Stem","Root"],correct:3}
+];
+function renderQuestions() {
+  $("questionArea").innerHTML = questions.map((q,i)=>`
+    <div class="question">
+      <b>${i+1}. ${q.q}</b>
+      ${q.a.map((answer,j)=>`
+        <label><input style="width:auto;margin:9px 6px 0 0" type="radio" name="q${i}" value="${j}">${answer}</label>
+      `).join("")}
+    </div>`).join("");
+}
+function submitExam(event) {
+  event.preventDefault();
+  let score = 0;
+  questions.forEach((q,i)=>{
+    const selected = document.querySelector('input[name="q'+i+'"]:checked');
+    if(selected && Number(selected.value)===q.correct) score += 20;
+  });
+  data.results.push({
+    student:currentName,
+    subject:"Biology",
+    score:score,
+    grade:grade(score),
+    date:new Date().toLocaleDateString()
+  });
+  saveData();
+  $("examFeedback").innerHTML =
+    '<div class="notice success"><b>Exam submitted!</b><br>Your score: '+score+'/100<br>Grade: '+grade(score)+
+    '<br>This is a practice result saved on this device.</div>';
+  toast("Your practice exam has been submitted.");
+}
+function resetExam() {
+  $("examForm").reset();
+  $("examFeedback").innerHTML="";
+}
+function grade(score) {
+  if(score>=70)return "A";
+  if(score>=60)return "B";
+  if(score>=50)return "C";
+  if(score>=45)return "D";
+  if(score>=40)return "E";
+  return "F";
+}
+function markAttendance() {
+  const student=$("attStudent").value.trim() || currentName;
+  const date=$("attDate").value;
+  if(!date){toast("Please select a date.");return;}
+  data.attendance.push({student,date,status:$("attStatus").value});
+  $("attStudent").value="";
+  saveData();
+  toast("Attendance saved on this device.");
+}
+function addFee() {
+  const student=$("feeStudent").value.trim();
+  const amount=Number($("feeAmount").value);
+  if(!student || !Number.isFinite(amount) || amount<=0) {
+    toast("Enter a student name and a valid amount.");
+    return;
+  }
+  data.fees.push({student,amount,status:$("feeStatus").value});
+  $("feeStudent").value="";
+  $("feeAmount").value="";
+  saveData();
+  toast("Demo fee record saved.");
+}
+function addPerson() {
+  const name=$("personName").value.trim();
+  if(!name){toast("Enter the person's name.");return;}
+  data.people.push({
+    name,role:$("personRole").value,
+    schoolClass:$("personClass").value.trim() || "Not specified"
+  });
+  $("personName").value="";
+  $("personClass").value="";
+  saveData();
+  toast("Demo record added.");
+}
+function saveAssignment() {
+  const answer=$("assignmentAnswer").value.trim();
+  if(!answer){toast("Write your answer first.");return;}
+  data.assignments.push({
+    student:currentName,answer,
+    date:new Date().toLocaleString()
+  });
+  saveData();
+  $("assignmentFeedback").textContent="Your demo submission has been saved on this device.";
+  toast("Assignment saved.");
+}
+function createAssignment() {
+  const title=$("newAssignment").value.trim();
+  const description=$("newAssignmentDesc").value.trim();
+  if(!title){toast("Enter an assignment title.");return;}
+  data.assignments.push({title,description,createdBy:currentName,type:"task"});
+  $("newAssignment").value="";
+  $("newAssignmentDesc").value="";
+  saveData();
+  toast("Demo assignment created.");
+}
+function publishAnnouncement() {
+  const announcement=$("announcementInput").value.trim();
+  if(!announcement){toast("Write an announcement first.");return;}
+  data.announcement=announcement;
+  $("announcementInput").value="";
+  saveData();
+  toast("Announcement saved on this device.");
+}
+function safe(value) {
+  return String(value??"").replace(/[&<>"']/g,c=>({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[c]));
+}
+function rowsOrEmpty(rows,columns) {
+  return rows.length ? rows.join("") :
+    '<tr><td colspan="'+columns+'" class="muted">No records yet.</td></tr>';
+}
+function renderAll() {
+  if(!$("resultTable")) return;
+  $("resultTable").innerHTML=rowsOrEmpty(data.results.map(r=>
+    `<tr><td>${safe(r.student)}</td><td>${safe(r.subject)}</td><td>${r.score}/100</td><td>${safe(r.grade)}</td></tr>`
+  ),4);
+  $("attendanceTable").innerHTML=rowsOrEmpty(data.attendance.map(r=>
+    `<tr><td>${safe(r.student)}</td><td>${safe(r.date)}</td><td>${safe(r.status)}</td></tr>`
+  ),3);
+  $("feeTable").innerHTML=rowsOrEmpty(data.fees.map(r=>
+    `<tr><td>${safe(r.student)}</td><td>₦${Number(r.amount).toLocaleString()}</td><td>${safe(r.status)}</td></tr>`
+  ),3);
+  $("peopleTable").innerHTML=rowsOrEmpty(data.people.map(r=>
+    `<tr><td>${safe(r.name)}</td><td>${safe(r.role)}</td><td>${safe(r.schoolClass)}</td></tr>`
+  ),3);
+  $("resultCount").textContent=data.results.length;
+  $("attendanceCount").textContent=data.attendance.length;
+  $("examCount").textContent=1;
+  $("adminPeople").textContent=data.people.length;
+  $("adminAttendance").textContent=data.attendance.length;
+  $("adminFees").textContent=data.fees.length;
+  $("adminResults").textContent=data.results.length;
+  $("announcementView").textContent=data.announcement;
+  const tasks=data.assignments.filter(a=>a.type==="task");
+  $("assignmentList").innerHTML=tasks.length ? tasks.map(a=>
+    `<div class="notice"><b>${safe(a.title)}</b><br>${safe(a.description)}<br><small>Created by ${safe(a.createdBy)}</small></div>`
+  ).join("") : '<p class="muted">No additional assignments have been published.</p>';
+}
+function exportData() {
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+  const url=URL.createObjectURL(blob);
+  const link=document.createElement("a");
+  link.href=url;link.download="delight-demo-backup.json";
+  document.body.appendChild(link);link.click();link.remove();
+  URL.revokeObjectURL(url);
+  toast("Demo data export requested.");
+}
+function clearData() {
+  if(!confirm("Delete all demo records saved on this device?"))return;
+  data=structuredDefaults();
+  saveData();
+  toast("Demo records cleared.");
+}
+$("attDate").value=new Date().toISOString().slice(0,10);
+renderQuestions();
+renderAll();
+</script>
+</body>
+</html>
